@@ -1,176 +1,282 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cairo Estudio impulsa tu negocio con sitios web, aplicaciones y marketing digital. Desarrollo profesional y trato cercano desde Las Piedras, Uruguay." />
-  <meta name="keywords" content="desarrollo web, diseño gráfico, marketing digital, aplicaciones, Cairo Estudio, sitios web Uruguay" />
-  <meta name="author" content="Cairo Estudio">
-  <title>Cairo Estudio - Desarrollo Web Profesional</title>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Cairo Estudio - Desarrollo Web Profesional">
-  <meta property="og:description" content="Sitios web modernos, apps personalizadas y soluciones digitales para tu negocio o emprendimiento.">
-  <meta property="og:image" content="https://tusitio.com/imagen-og.jpg">
-  <meta property="og:url" content="https://tusitio.com/">
-  <meta property="og:type" content="website">
-
-  <!-- Styles -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Profesional | Cairo Estudios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a2d3e6c45d.js" crossorigin="anonymous"></script>
   <style>
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-      background: #f8f9fa;
-      color: #212529;
     }
-    .navbar {
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
     }
-    .hero {
-      padding: 80px 20px;
-      background: #fff;
+
+    header {
+      padding: 2rem 1rem;
       text-align: center;
+      background: #111111;
+      color: #ffffff;
     }
-    .hero h1 {
-      font-weight: 800;
+
+    header h1 {
       font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
-    .btn-main {
-      background-color: #000;
+
+    header p {
+      font-size: 1.2rem;
+      color: #dddddd;
+    }
+
+    nav {
+      background-color: #222;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+
+    nav a {
       color: #fff;
-      padding: 10px 24px;
-      border-radius: 30px;
+      margin: 0.5rem 1rem;
+      text-decoration: none;
       font-weight: 600;
-      text-decoration: none;
     }
-    .btn-main:hover {
-      background-color: #333;
+
+    nav a:hover {
+      text-decoration: underline;
     }
-    .section {
-      padding: 60px 20px;
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
-    footer {
-      background-color: #fff;
-      padding: 20px;
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #222222;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+
+    .servicio {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .servicio i {
+      font-size: 1.8rem;
+      color: #e94e77;
+      min-width: 32px;
+    }
+
+    .servicio div {
+      flex: 1;
+    }
+
+    .proyecto {
+      margin-bottom: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      padding: 2rem;
       text-align: center;
-      font-size: 0.9rem;
-      color: #6c757d;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 30px;
-      text-decoration: none;
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .card .precio {
+      font-size: 1.8rem;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 999;
+      color: #e94e77;
+      margin: 1rem 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    .card ul li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .card ul li i {
+      color: #27ae60;
+      margin-right: 0.5rem;
+    }
+
+    .contacto {
+      background: #f4f4f4;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .servicio {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Portfolio Profesional</h1>
+    <p>Diseño gráfico, branding y contenido digital | Cairo Estudios</p>
+  </header>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">Cairo Estudio</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portafolio">Proyectos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-      </ul>
+  <nav>
+    <a href="#sobremi">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#planes">Planes</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="sobremi">
+    <h2>Sobre Mí</h2>
+    <p>Soy diseñador/a gráfico/a con experiencia en branding, contenido para redes y diseño visual comercial. Ayudo a marcas y creadores a destacar con imágenes claras, profesionales y modernas.</p>
+  </section>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <div class="servicio">
+      <i class="fas fa-pen-nib"></i>
+      <div><strong>Diseño gráfico e ilustración</strong><p>Imágenes publicitarias, ilustraciones creativas y composiciones visuales impactantes.</p></div>
     </div>
-  </div>
-</nav>
+    <div class="servicio">
+      <i class="fas fa-chalkboard"></i>
+      <div><strong>Carteles informativos para redes</strong><p>Diseño de publicaciones educativas, informativas o promocionales.</p></div>
+    </div>
+    <div class="servicio">
+      <i class="fas fa-camera-retro"></i>
+      <div><strong>Publicidad y retoque de producto</strong><p>Fotomontaje, limpieza de fondo, iluminación, composición profesional para ecommerce o campañas.</p></div>
+    </div>
+    <div class="servicio">
+      <i class="fab fa-youtube"></i>
+      <div><strong>Portadas para YouTube</strong><p>Thumbnails optimizados, diseño coherente con la marca del canal, banners y cabeceras.</p></div>
+    </div>
+    <div class="servicio">
+      <i class="fas fa-palette"></i>
+      <div><strong>Branding de Marca</strong><p>Logo, colores, tipografía, empaques, tarjetas, manual de marca completo.</p></div>
+    </div>
+    <div class="servicio">
+      <i class="fas fa-bullhorn"></i>
+      <div><strong>Manejo de redes sociales</strong><p>Contenido visual diario, estética de feed, historias, promociones y anuncios para Meta Ads.</p></div>
+    </div>
+    <div class="servicio">
+      <i class="fas fa-book-open"></i>
+      <div><strong>Portadas para libros</strong><p>Diseño profesional de tapas para ebooks, novelas, libros técnicos o infantiles.</p></div>
+    </div>
+    <div class="servicio">
+      <i class="fas fa-tshirt"></i>
+      <div><strong>Diseño para estampado textil</strong><p>Ilustraciones para serigrafía, sublimación, ropa y productos impresos.</p></div>
+    </div>
+  </section>
 
-<header class="hero">
-  <div class="container">
-    <h1>Soluciones digitales para negocios reales</h1>
-    <p class="lead">Diseñamos sitios web, aplicaciones y estrategias digitales con un enfoque profesional y cercano.</p>
-    <a href="#contacto" class="btn-main mt-3">Pedí tu presupuesto</a>
-  </div>
-</header>
-
-<section class="section bg-light" id="servicios">
-  <div class="container">
-    <h2 class="text-center mb-5">Lo que hacemos</h2>
-    <div class="row g-4">
-      <div class="col-md-3">
-        <div class="text-center">
-          <i class="bi bi-window-stack fs-1 text-primary"></i>
-          <h5 class="mt-3">Sitios Web</h5>
-          <p>Diseño moderno, rápido y adaptable a cualquier pantalla. Tu sitio, tu estilo.</p>
-        </div>
+  <section id="planes">
+    <h2>Planes y Precios</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Plan Básico</h3>
+        <p>Ideal para emprendedores que recién comienzan.</p>
+        <div class="precio">$50 USD</div>
+        <ul>
+          <li><i class="fas fa-check"></i> 3 diseños para redes</li>
+          <li><i class="fas fa-check"></i> 1 logo básico</li>
+          <li><i class="fas fa-check"></i> 1 portada YouTube</li>
+        </ul>
       </div>
-      <div class="col-md-3">
-        <div class="text-center">
-          <i class="bi bi-phone fs-1 text-success"></i>
-          <h5 class="mt-3">Aplicaciones Web</h5>
-          <p>Herramientas útiles, fáciles de usar, hechas a medida para tu negocio.</p>
-        </div>
+      <div class="card">
+        <h3>Plan Profesional</h3>
+        <p>Perfecto para marcas en crecimiento.</p>
+        <div class="precio">$120 USD</div>
+        <ul>
+          <li><i class="fas fa-check"></i> Branding completo</li>
+          <li><i class="fas fa-check"></i> 6 diseños/redes</li>
+          <li><i class="fas fa-check"></i> Portada para libro o canal</li>
+        </ul>
       </div>
-      <div class="col-md-3">
-        <div class="text-center">
-          <i class="bi bi-graph-up fs-1 text-warning"></i>
-          <h5 class="mt-3">Marketing Digital</h5>
-          <p>Impulsamos tu presencia en redes sociales, buscadores y anuncios.</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="text-center">
-          <i class="bi bi-magic fs-1 text-danger"></i>
-          <h5 class="mt-3">Diseño y Fotos</h5>
-          <p>Edición profesional de imágenes, diseño de flyers, logos y más.</p>
-        </div>
+      <div class="card">
+        <h3>Plan Premium</h3>
+        <p>Para empresas y creadores con visión global.</p>
+        <div class="precio">$250 USD</div>
+        <ul>
+          <li><i class="fas fa-check"></i> Todo lo del plan Pro</li>
+          <li><i class="fas fa-check"></i> Diseño de packaging</li>
+          <li><i class="fas fa-check"></i> Gestión mensual de redes</li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="portafolio">
-  <div class="container">
-    <h2 class="text-center mb-4">Algunos trabajos</h2>
-    <p class="text-center">Creamos sitios y aplicaciones para todo tipo de emprendimientos: barberías, tiendas, salones, veterinarias y más.</p>
-    <!-- Aquí podrías insertar proyectos reales con imágenes -->
-  </div>
-</section>
+  <section id="proyectos">
+    <h2>Proyectos Destacados</h2>
+    <div class="proyecto">
+      <strong>Branding para Café Aurora</strong>
+      <p>Logo, empaques, tarjetas, estética visual cálida y minimalista.</p>
+    </div>
+    <div class="proyecto">
+      <strong>Contenido para redes de FitWoman</strong>
+      <p>Historias, reels, publicaciones motivacionales y educativas.</p>
+    </div>
+    <div class="proyecto">
+      <strong>Portadas para canal Tech Zone</strong>
+      <p>Thumbnails, banner y estilo gráfico para YouTube.</p>
+    </div>
+  </section>
 
-<section class="section bg-light" id="contacto">
-  <div class="container" style="max-width:600px;">
-    <h2 class="text-center mb-4">Contactanos</h2>
-    <form onsubmit="event.preventDefault(); alert('¡Gracias por escribirnos!'); this.reset();">
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" required>
-      </div>
-      <div class="mb-3">
-        <label for="mensaje" class="form-label">Mensaje</label>
-        <textarea id="mensaje" class="form-control" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="btn-main w-100">Enviar mensaje</button>
-    </form>
-  </div>
-</section>
+  <section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <p>📧 contacto@tumarca.com</p>
+    <p>📱 +598 123 456 789</p>
+    <p>🌐 Instagram / Behance / LinkedIn</p>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Cairo Estudio - Las Piedras, Uruguay</p>
-</footer>
-
-<a class="whatsapp" href="https://wa.me/59891234567" target="_blank" aria-label="Chatear por WhatsApp">💬 WhatsApp</a>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <footer>
+    © 2025 Cairo Estudios | Diseño profesional y marketing visual
+  </footer>
 </body>
 </html>
