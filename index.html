@@ -4,279 +4,510 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio Profesional | Cairo Estudios</title>
+  <meta name="description" content="Diseño gráfico, branding y contenido digital para marcas modernas. Cairo Estudios.">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a2d3e6c45d.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
-      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
       color: #1a1a1a;
-      line-height: 1.6;
+    }
+    .navbar {
+      background-color: #222;
+    }
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
     }
 
+    .navbar-nav .nav-link::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #e94e77;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      transition: width 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #e94e77 !important;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
     header {
-      padding: 2rem 1rem;
+      background: #111;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
       text-align: center;
-      background: #111111;
-      color: #ffffff;
     }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
     header p {
-      font-size: 1.2rem;
       color: #dddddd;
     }
-
-    nav {
-      background-color: #222;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 1rem;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0.5rem 1rem;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #222222;
+      color: #222;
       border-bottom: 2px solid #ddd;
       padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
     }
-
-    .servicio {
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+    .servicio-card img, .proyecto img {
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
-
-    .servicio i {
-      font-size: 1.8rem;
-      color: #e94e77;
-      min-width: 32px;
-    }
-
-    .servicio div {
-      flex: 1;
-    }
-
-    .proyecto {
-      margin-bottom: 2rem;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background-color: #f8f8f8;
-      border-radius: 10px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    .card .precio {
-      font-size: 1.8rem;
+    .precio {
+      font-size: 1.5rem;
       font-weight: bold;
       color: #e94e77;
       margin: 1rem 0;
     }
-
-    .card ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-    }
-
-    .card ul li {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .card ul li i {
-      color: #27ae60;
-      margin-right: 0.5rem;
-    }
-
-    .contacto {
-      background: #f4f4f4;
-      padding: 2rem;
-      text-align: center;
-    }
-
     footer {
-      text-align: center;
-      padding: 2rem;
       background: #111;
       color: #999;
+      text-align: center;
+      padding: 2rem 0;
       font-size: 0.9rem;
+      margin-top: 2rem;
     }
 
-    @media (max-width: 600px) {
-      .servicio {
-        flex-direction: column;
-      }
-    }
+    /*Estilos generales del boton whatsapp*/
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/*Estilos solo al icono whatsapp*/
+.whatsapp-btn i {
+  color: #fff;
+  font-size: 24px;
+  animation: beat 2s ease-in-out infinite;
+  text-decoration: none;
+}
+
+/*Estilos con animation contorno respirando*/
+@keyframes breathe {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/*Estilos de animacion del icono latiendo*/
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
   </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
   <header>
-    <h1>Portfolio Profesional</h1>
-    <p>Diseño gráfico, branding y contenido digital | Cairo Estudios</p>
+    <h1 class="display-5">Portfolio Profesional</h1>
+    <p class="lead">Diseño gráfico, branding y contenido digital | Cairo Estudios</p>
   </header>
 
-  <nav>
-    <a href="#sobremi">Sobre mí</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#planes">Planes</a>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#contacto">Contacto</a>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="#">Cairo Estudios</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#sobremi">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#planes">Planes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <section id="sobremi">
+  <section id="sobremi" class="container py-5">
     <h2>Sobre Mí</h2>
-    <p>Soy diseñador/a gráfico/a con experiencia en branding, contenido para redes y diseño visual comercial. Ayudo a marcas y creadores a destacar con imágenes claras, profesionales y modernas.</p>
+    <p>
+      En Cairo Estudios creamos soluciones visuales estratégicas para marcas que buscan diferenciarse. Nos especializamos en diseño gráfico, branding y contenido digital, ayudando a emprendedores y empresas a comunicar su identidad con claridad y estilo.
+    </p>
   </section>
 
-  <section id="servicios">
-    <h2>Servicios</h2>
-    <div class="servicio">
-      <i class="fas fa-pen-nib"></i>
-      <div><strong>Diseño gráfico e ilustración</strong><p>Imágenes publicitarias, ilustraciones creativas y composiciones visuales impactantes.</p></div>
+  <section id="desarrollo" class="container py-5">
+  <h2>Desarrollo Web y Aplicaciones</h2>
+  <div class="row g-4">
+    
+    <!-- Sitios Web Responsivos -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-laptop-code fa-3x text-primary"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Sitios Web Responsivos</h5>
+          <p class="card-text">Diseño y desarrollo de sitios web adaptables a todos los dispositivos, rápidos y modernos.</p>
+        </div>
+      </div>
     </div>
-    <div class="servicio">
-      <i class="fas fa-chalkboard"></i>
-      <div><strong>Carteles informativos para redes</strong><p>Diseño de publicaciones educativas, informativas o promocionales.</p></div>
-    </div>
-    <div class="servicio">
-      <i class="fas fa-camera-retro"></i>
-      <div><strong>Publicidad y retoque de producto</strong><p>Fotomontaje, limpieza de fondo, iluminación, composición profesional para ecommerce o campañas.</p></div>
-    </div>
-    <div class="servicio">
-      <i class="fab fa-youtube"></i>
-      <div><strong>Portadas para YouTube</strong><p>Thumbnails optimizados, diseño coherente con la marca del canal, banners y cabeceras.</p></div>
-    </div>
-    <div class="servicio">
-      <i class="fas fa-palette"></i>
-      <div><strong>Branding de Marca</strong><p>Logo, colores, tipografía, empaques, tarjetas, manual de marca completo.</p></div>
-    </div>
-    <div class="servicio">
-      <i class="fas fa-bullhorn"></i>
-      <div><strong>Manejo de redes sociales</strong><p>Contenido visual diario, estética de feed, historias, promociones y anuncios para Meta Ads.</p></div>
-    </div>
-    <div class="servicio">
-      <i class="fas fa-book-open"></i>
-      <div><strong>Portadas para libros</strong><p>Diseño profesional de tapas para ebooks, novelas, libros técnicos o infantiles.</p></div>
-    </div>
-    <div class="servicio">
-      <i class="fas fa-tshirt"></i>
-      <div><strong>Diseño para estampado textil</strong><p>Ilustraciones para serigrafía, sublimación, ropa y productos impresos.</p></div>
-    </div>
-  </section>
 
-  <section id="planes">
+    <!-- Tiendas Online (Ecommerce) -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-shopping-cart fa-3x text-success"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Tiendas Online</h5>
+          <p class="card-text">Desarrollo de ecommerce con pasarelas de pago, catálogo autogestionable y diseño atractivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aplicaciones Web -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-layer-group fa-3x text-warning"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Aplicaciones Web</h5>
+          <p class="card-text">Plataformas personalizadas según tus necesidades: sistemas de gestión, agendas, dashboards, etc.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX/UI & Prototipos -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-pencil-ruler fa-3x text-danger"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">UX/UI & Prototipos</h5>
+          <p class="card-text">Diseño de interfaces intuitivas, experiencia de usuario optimizada y prototipos navegables.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mantenimiento Web -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-tools fa-3x text-secondary"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Mantenimiento Web</h5>
+          <p class="card-text">Soporte técnico, actualizaciones de contenido y seguridad para tu sitio o aplicación.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO y Velocidad -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-rocket fa-3x text-info"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">SEO y Velocidad</h5>
+          <p class="card-text">Optimización técnica para mejorar el posicionamiento en buscadores y la velocidad de carga.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integraciones y APIs -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-plug fa-3x text-dark"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Integraciones y APIs</h5>
+          <p class="card-text">Conectamos tu web con servicios externos: CRMs, plataformas de pago, newsletters, bases de datos, etc.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apps móviles híbridas -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-mobile-alt fa-3x text-pink"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Apps móviles híbridas</h5>
+          <p class="card-text">Desarrollo de apps multiplataforma (Android/iOS) usando tecnologías modernas como Vue Native o Flutter.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="diseno" class="container py-5">
+  <h2>Diseño Gráfico y Proyectos Visuales</h2>
+  <div class="row g-4">
+
+    <!-- Identidad de Marca -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-bullseye fa-3x text-primary"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Identidad de Marca</h5>
+          <p class="card-text">Creación de logos, paleta de colores, tipografías, manual de marca y estilo visual coherente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diseño Editorial -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-book-open fa-3x text-danger"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Diseño Editorial</h5>
+          <p class="card-text">Maquetación de libros, catálogos, revistas y portadas para productos impresos y digitales.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diseño para Redes Sociales -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fab fa-instagram fa-3x text-warning"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Diseño para Redes</h5>
+          <p class="card-text">Publicaciones, historias, carruseles y contenido visual para Instagram, Facebook y más.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publicidad y Promoción -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-bullhorn fa-3x text-success"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Publicidad y Promoción</h5>
+          <p class="card-text">Diseño de banners, flyers, carteles y piezas visuales para campañas publicitarias.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ilustración Creativa -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-pencil-alt fa-3x text-secondary"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Ilustración Creativa</h5>
+          <p class="card-text">Creación de personajes, escenas, conceptos visuales e ilustraciones digitales personalizadas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diseño para Estampado -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-tshirt fa-3x text-pink"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Diseño para Estampado</h5>
+          <p class="card-text">Gráficas para sublimación, serigrafía y estampado textil en productos o ropa personalizada.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thumbnails y Portadas -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-image fa-3x text-info"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Thumbnails y Portadas</h5>
+          <p class="card-text">Diseño de miniaturas y cabeceras para YouTube, ebooks o contenidos audiovisuales.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retoque y Fotomontaje -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card servicio-card h-100 text-center py-4">
+        <div class="mb-3">
+          <i class="fas fa-magic fa-3x text-dark"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Retoque Fotográfico</h5>
+          <p class="card-text">Edición, limpieza, montaje y mejora de imágenes para productos, campañas o portafolios.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <section id="planes" class="container py-5">
     <h2>Planes y Precios</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Plan Básico</h3>
-        <p>Ideal para emprendedores que recién comienzan.</p>
-        <div class="precio">$50 USD</div>
-        <ul>
-          <li><i class="fas fa-check"></i> 3 diseños para redes</li>
-          <li><i class="fas fa-check"></i> 1 logo básico</li>
-          <li><i class="fas fa-check"></i> 1 portada YouTube</li>
-        </ul>
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="card-title">Plan Básico</h3>
+            <p class="card-text">Ideal para emprendedores que recién comienzan.</p>
+            <div class="precio">$50 USD</div>
+            <ul class="list-unstyled text-start">
+              <li><i class="fas fa-check text-success"></i> 3 diseños para redes</li>
+              <li><i class="fas fa-check text-success"></i> 1 logo básico</li>
+              <li><i class="fas fa-check text-success"></i> 1 portada YouTube</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Plan Profesional</h3>
-        <p>Perfecto para marcas en crecimiento.</p>
-        <div class="precio">$120 USD</div>
-        <ul>
-          <li><i class="fas fa-check"></i> Branding completo</li>
-          <li><i class="fas fa-check"></i> 6 diseños/redes</li>
-          <li><i class="fas fa-check"></i> Portada para libro o canal</li>
-        </ul>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="card-title">Plan Profesional</h3>
+            <p class="card-text">Perfecto para marcas en crecimiento.</p>
+            <div class="precio">$120 USD</div>
+            <ul class="list-unstyled text-start">
+              <li><i class="fas fa-check text-success"></i> Branding completo</li>
+              <li><i class="fas fa-check text-success"></i> 6 diseños/redes</li>
+              <li><i class="fas fa-check text-success"></i> Portada para libro o canal</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Plan Premium</h3>
-        <p>Para empresas y creadores con visión global.</p>
-        <div class="precio">$250 USD</div>
-        <ul>
-          <li><i class="fas fa-check"></i> Todo lo del plan Pro</li>
-          <li><i class="fas fa-check"></i> Diseño de packaging</li>
-          <li><i class="fas fa-check"></i> Gestión mensual de redes</li>
-        </ul>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="card-title">Plan Premium</h3>
+            <p class="card-text">Para empresas y creadores con visión global.</p>
+            <div class="precio">$250 USD</div>
+            <ul class="list-unstyled text-start">
+              <li><i class="fas fa-check text-success"></i> Todo lo del plan Pro</li>
+              <li><i class="fas fa-check text-success"></i> Diseño de packaging</li>
+              <li><i class="fas fa-check text-success"></i> Gestión mensual de redes</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="proyectos">
+  <section id="proyectos" class="container py-5">
     <h2>Proyectos Destacados</h2>
-    <div class="proyecto">
-      <strong>Branding para Café Aurora</strong>
-      <p>Logo, empaques, tarjetas, estética visual cálida y minimalista.</p>
-    </div>
-    <div class="proyecto">
-      <strong>Contenido para redes de FitWoman</strong>
-      <p>Historias, reels, publicaciones motivacionales y educativas.</p>
-    </div>
-    <div class="proyecto">
-      <strong>Portadas para canal Tech Zone</strong>
-      <p>Thumbnails, banner y estilo gráfico para YouTube.</p>
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="card h-100 proyecto">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Branding Café Aurora">
+          <div class="card-body">
+            <h5 class="card-title">Branding para Café Aurora</h5>
+            <p class="card-text">Logo, empaques, tarjetas, estética visual cálida y minimalista.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100 proyecto">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Redes FitWoman">
+          <div class="card-body">
+            <h5 class="card-title">Contenido para redes de FitWoman</h5>
+            <p class="card-text">Historias, reels, publicaciones motivacionales y educativas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100 proyecto">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Portadas Tech Zone">
+          <div class="card-body">
+            <h5 class="card-title">Portadas para canal Tech Zone</h5>
+            <p class="card-text">Thumbnails, banner y estilo gráfico para YouTube.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="contacto" class="contacto">
-    <h2>Contacto</h2>
-    <p>📧 contacto@tumarca.com</p>
-    <p>📱 +598 123 456 789</p>
-    <p>🌐 Instagram / Behance / LinkedIn</p>
-  </section>
+  <section id="contacto" class="container py-5 text-center contacto">
+  <h2>Contacto</h2>
+  <div class="d-flex justify-content-center gap-4 my-4 flex-wrap">
+    <a style="text-decoration: none; color: #111;" href="https://instagram.com/tuusuario" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+      </svg>
+      <span class="ms-2">Instagram</span>
+    </a>
+    <a style="text-decoration: none; color: #111;" href="https://wa.me/tu-numero" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+      </svg>
+      <span class="ms-2">Whatsapp</span>
+    </a>
+    <a style="text-decoration: none; color: #000;" href="https://linkedin.com/in/tuusuario" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+      </svg>
+      <span class="ms-2">Linkedin</span>
+    </a>
+  </div>
+  <hr>
+</section>
 
   <footer>
     © 2025 Cairo Estudios | Diseño profesional y marketing visual
   </footer>
+
+  <a href="https://wa.me/+59899946914?text=Hola" target=”_blank” class="whatsapp-btn">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+  <!-- Bootstrap JS -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html>0
