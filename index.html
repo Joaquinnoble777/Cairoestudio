@@ -34,6 +34,63 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+/* Animación de entrada suave (fade + slide) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover suave en tarjetas */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Animación pop para bloques de color */
+.color-block {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popIn 0.4s ease-out forwards;
+}
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Entrada con rebote leve para botón de descarga */
+.download-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: bounceIn 0.6s cubic-bezier(.17,.67,.83,.67) forwards;
+}
+@keyframes bounceIn {
+  50% {
+    transform: translateY(-5px);
+  }
+  70% {
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+  <style>
     body {
       font-family: 'Inter', sans-serif;
       background-color: #fff;
@@ -157,15 +214,121 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
+
+
 <body>
-  <header>
-    <h1 class="display-5">Portfolio Profesional</h1>
-    <p class="lead">Diseño gráfico, branding y contenido digital | CodeNoble</p>
-  </header>
+<style>
+  header {
+    position: relative;
+    overflow: hidden;
+    color: white;
+    background: #005d81; /* Fondo oscuro para que resalte la animación */
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  #particles-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* para que no interfiera con clicks */
+    z-index: 0;
+  }
+
+  header > * {
+    position: relative;
+    z-index: 1; /* para que texto quede arriba del canvas */
+  }
+</style>
+
+<header>
+  <canvas id="particles-canvas"></canvas>
+  <h1 class="display-5">Portfolio Profesional</h1>
+  <p class="lead">Diseño gráfico, branding y contenido digital | CodeNoble</p>
+</header>
+
+<script>
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let particlesArray;
+
+  // Ajustar canvas al tamaño del header
+  function initCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+  }
+
+  class Particle {
+    constructor(x, y, size, speedX, speedY) {
+      this.x = x;
+      this.y = y;
+      this.size = size;
+      this.speedX = speedX;
+      this.speedY = speedY;
+      this.opacity = Math.random() * 0.5 + 0.1;
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      // Reaparece del otro lado
+      if (this.x > canvas.width) this.x = 0;
+      if (this.x < 0) this.x = canvas.width;
+      if (this.y > canvas.height) this.y = 0;
+      if (this.y < 0) this.y = canvas.height;
+    }
+
+    draw() {
+      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particlesArray = [];
+    const numberOfParticles = 50;
+    for (let i = 0; i < numberOfParticles; i++) {
+      let size = Math.random() * 2 + 1;
+      let x = Math.random() * canvas.width;
+      let y = Math.random() * canvas.height;
+      let speedX = (Math.random() - 0.5) * 0.3;  // velocidad suave horizontal
+      let speedY = (Math.random() - 0.5) * 0.3;  // velocidad suave vertical
+      particlesArray.push(new Particle(x, y, size, speedX, speedY));
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particlesArray.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  function setup() {
+    initCanvas();
+    initParticles();
+    animate();
+  }
+
+  window.addEventListener('resize', () => {
+    initCanvas();
+    initParticles();
+  });
+
+  setup();
+</script>
+
 
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand text-white" href="#">CodeNoble</a>
+      <a class="navbar-brand text-white" href="#">EN Desarrollo web</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Menú">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -182,14 +345,27 @@
   </nav>
 
   <section id="sobremi" class="container py-5">
-    <h2>Sobre Mí</h2>
-    <p>
-      En CodeNoble creamos soluciones visuales estratégicas para marcas que buscan diferenciarse. Nos especializamos en diseño gráfico, branding y contenido digital, ayudando a emprendedores y empresas a comunicar su identidad con claridad y estilo.
-    </p>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mb-4">Sobre Mí</h2>
+        <p class="lead" style="font-size:1.25rem; color:#333;"></p>
+          Soy <strong>CodeNoble</strong>, especialista en <span style="color:#e94e77;">diseño gráfico</span>, <span style="color:#005d81;">branding</span> y <span style="color:#25D366;">contenido digital</span>. Ayudo a marcas, emprendedores y empresas a destacar en el mercado con soluciones visuales estratégicas y creativas.
+        </p>
+        <hr class="my-4" style="border-top:2px solid #e94e77; width:60px; margin:auto;">
+        <p style="color:#555;">
+          Mi enfoque combina estética, funcionalidad y comunicación clara para potenciar la identidad de tu marca. Cada proyecto es personalizado, buscando resultados que conecten con tu público y generen valor real.
+        </p>
+        <div class="mt-4">
+          <a href="#contacto" class="btn btn-primary btn-lg px-4 shadow download-btn">
+            Trabajemos juntos
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
 <section id="portfolioCards" class="container py-5">
-  <h2 class="mb-4 text-center">Mi Portfolio</h2>
+  <h2 class="mb-4 text-center">Imágenes y diseño gráfico</h2>
   <div class="row g-4 justify-content-center">
     <!-- Card 1 -->
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -270,83 +446,85 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-   <section id="proyectos" class="container py-5">
-    <h2>Aplicaciones</h2>
-    <br>
-    <div class="row g-4">
-<div class="col-12 col-md-4">
-  <div class="card h-100 proyecto">
-    <img src="generarfacturas.png" class="card-img-top" alt="Generador de Facturas">
-    <div class="card-body d-flex flex-column">
-      <h5 class="card-title">Generador de Facturas Pro</h5>
-      <p class="card-text">App web para crear facturas en PDF personalizadas. Agregá productos, calculá totales y exportá con un solo clic.</p>
-      <div class="mt-auto d-flex flex-wrap gap-2">
-        <a href="https://generadordefactura.netlify.app/" target="_blank" class="btn btn-outline-primary btn-sm">Ver Proyecto</a>
-        <a href="https://github.com/Joaquinnoble777/Generador-de-facturas-" target="_blank" class="btn btn-outline-dark btn-sm">Ver Código</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-      <div class="col-12 col-md-4">
-  <div class="card h-100 proyecto">
-    <img src="/Controldeclientes.png" class="card-img-top" alt="Gestión de Productos y Clientes">
-    <div class="card-body d-flex flex-column">
-      <h5 class="card-title">Gestión de Productos y Clientes</h5>
-      <p class="card-text">App para controlar ventas, calcular ganancias, filtrar por cliente y exportar a Excel. Ideal para emprendedores o pequeños negocios.</p>
-      <div class="mt-auto d-flex flex-wrap gap-2">
-        <a href="https://controldeclientes.netlify.app/" target="_blank" class="btn btn-outline-primary btn-sm">Ver Proyecto</a>
-        <a href="https://github.com/Joaquinnoble777/Clientes-" target="_blank" class="btn btn-outline-dark btn-sm">Ver Código</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-      <div class="col-12 col-md-4">
-  <div class="card h-100 proyecto">
-    <img src="/billeteravirtual.png" class="card-img-top" alt="Billetera Digital">
-    <div class="card-body d-flex flex-column">
-      <h5 class="card-title">Billetera Digital - Finanzas del Hogar</h5>
-      <p class="card-text">App web para registrar ingresos y gastos, con categorías, carga de archivos, resumen visual y almacenamiento local.</p>
-      <div class="mt-auto d-flex flex-wrap gap-2">
-        <a href="https://controldebilleteravirtual.netlify.app/" target="_blank" class="btn btn-outline-primary btn-sm">Ver Proyecto</a>
-        <a href="https://github.com/Joaquinnoble777/Billeteravirtual" target="_blank" class="btn btn-outline-dark btn-sm">Ver Código</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-    </div>
-  </section>
-
   <section id="desarrollo" class="container py-5">
   <h2>Desarrollo Web y Aplicaciones</h2>
   <br>
   <div class="row g-4">
-    
-    <!-- Sitios Web Responsivos -->
-    <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card servicio-card h-100 text-center py-4">
-        <div class="mb-3">
-          <i class="fas fa-laptop-code fa-3x text-primary"></i>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Sitios Web Responsivos</h5>
-          <p class="card-text">Diseño y desarrollo de sitios web adaptables a todos los dispositivos, rápidos y modernos.</p>
-        </div>
+<!-- Card Sitio Web para Community Manager -->
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="card h-100 shadow-lg border-0">
+    <div class="card-body text-center p-4">
+      <div class="mb-3">
+        <i class="fas fa-globe fa-3x text-primary"></i>
       </div>
+      <h4 class="card-title fw-bold mb-3">Sitios Web para Community Managers</h4>
+      <p class="card-text">
+        Mostrá tu trabajo y conseguí más clientes con un sitio web profesional, moderno y optimizado para redes sociales.
+      </p>
+      <ul class="list-unstyled text-start small">
+        <li>✔ Portfolio y planes</li>
+        <li>✔ Integración con Instagram y WhatsApp</li>
+        <li>✔ Diseño adaptado a tu marca</li>
+      </ul>
+      <a href="https://comunitymanager.netlify.app/" target="_blank" 
+         class="btn btn-primary w-100 mt-3">
+        Ver sitio web
+      </a>
     </div>
+  </div>
+</div>
 
+
+<!-- Card Sitio Web para Servicio de Corte de Césped -->
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="card h-100 shadow-lg border-0">
+    <div class="card-body text-center p-4">
+      <div class="mb-3">
+        <i class="fas fa-seedling fa-3x text-success"></i>
+      </div>
+      <h4 class="card-title fw-bold mb-3">Sitios Web para Servicios de Jardinería</h4>
+      <p class="card-text">
+        Diseños profesionales y optimizados para que tu servicio de corte de césped atraiga más clientes y se destaque online.
+      </p>
+      <ul class="list-unstyled text-start small">
+        <li>✔ Muestra de trabajos y precios</li>
+        <li>✔ Botón de contacto por WhatsApp</li>
+        <li>✔ Adaptado a todos los dispositivos</li>
+      </ul>
+      <a href="https://cortesdecesped.netlify.app" target="_blank" 
+         class="btn btn-success w-100 mt-3">
+     Ver sitio Web
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Card Sitio Web para Veterinarias -->
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="card h-100 shadow-lg border-0">
+    <div class="card-body text-center p-4">
+      <div class="mb-3">
+        <i class="fas fa-paw fa-3x text-primary"></i>
+      </div>
+      <h4 class="card-title fw-bold mb-3">Sitios Web para Veterinarias</h4>
+      <p class="card-text">
+        Diseños profesionales para que tu clínica veterinaria, como <strong>VetNoble</strong>, muestre servicios, tienda y ubicación de forma atractiva.
+      </p>
+      <ul class="list-unstyled text-start small">
+        <li>✔ Presentación de servicios y equipo</li>
+        <li>✔ Turnos online vía WhatsApp</li>
+        <li>✔ Tienda de productos para mascotas</li>
+        <li>✔ Mapa con ubicación</li>
+      </ul>
+      <a href="https://sitiowebveterinaria.netlify.app/" target="_blank"
+         class="btn btn-primary w-100 mt-3">
+    Ver sitio web 
+      </a>
+    </div>
+  </div>
+</div>
+    <h2>  Además También</h2>
     <!-- Tiendas Online (Ecommerce) -->
     <div class="col-12 col-sm-6 col-lg-3">
       <div class="card servicio-card h-100 text-center py-4">
@@ -359,7 +537,6 @@
         </div>
       </div>
     </div>
-
     <!-- Aplicaciones Web -->
     <div class="col-12 col-sm-6 col-lg-3">
       <div class="card servicio-card h-100 text-center py-4">
@@ -382,6 +559,7 @@
         <div class="card-body">
           <h5 class="card-title">UX/UI & Prototipos</h5>
           <p class="card-text">Diseño de interfaces intuitivas, experiencia de usuario optimizada y prototipos navegables.</p>
+
         </div>
       </div>
     </div>
@@ -395,49 +573,10 @@
         <div class="card-body">
           <h5 class="card-title">Mantenimiento Web</h5>
           <p class="card-text">Soporte técnico, actualizaciones de contenido y seguridad para tu sitio o aplicación.</p>
+          
         </div>
       </div>
     </div>
-
-    <!-- SEO y Velocidad -->
-    <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card servicio-card h-100 text-center py-4">
-        <div class="mb-3">
-          <i class="fas fa-rocket fa-3x text-info"></i>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">SEO y Velocidad</h5>
-          <p class="card-text">Optimización técnica para mejorar el posicionamiento en buscadores y la velocidad de carga.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Integraciones y APIs -->
-    <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card servicio-card h-100 text-center py-4">
-        <div class="mb-3">
-          <i class="fas fa-plug fa-3x text-dark"></i>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Integraciones y APIs</h5>
-          <p class="card-text">Conectamos tu web con servicios externos: CRMs, plataformas de pago, newsletters, bases de datos, etc.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Apps móviles híbridas -->
-    <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card servicio-card h-100 text-center py-4">
-        <div class="mb-3">
-          <i class="fas fa-mobile-alt fa-3x text-pink"></i>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Apps móviles híbridas</h5>
-          <p class="card-text">Desarrollo de apps multiplataforma (Android/iOS) usando tecnologías modernas como Vue Native o Flutter.</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
